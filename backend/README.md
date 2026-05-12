@@ -85,6 +85,7 @@ El `refresh_token` emitido por `/token` expira en **1800 segundos**.
 
 ```bash
 cd backend
+export JWT_SECRET_KEY="tu-clave-secreta"
 docker compose up --build
 ```
 

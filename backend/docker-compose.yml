@@ -5,6 +5,6 @@ services:
       - "8000:8000"
     container_name: jwt-fastapi-backend
     environment:
-      JWT_SECRET_KEY: "jwt-secret-key-change-me"
-      JWT_ADMIN_USERNAME: "admin"
-      JWT_ADMIN_PASSWORD: "admin123"
+      JWT_SECRET_KEY: "${JWT_SECRET_KEY:?JWT_SECRET_KEY is required}"
+      JWT_ADMIN_USERNAME: "${JWT_ADMIN_USERNAME:-admin}"
+      JWT_ADMIN_PASSWORD: "${JWT_ADMIN_PASSWORD:-admin123}"
