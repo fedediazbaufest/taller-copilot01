@@ -8,6 +8,13 @@ Aplicación Web API en Python + FastAPI que implementa autenticación JWT.
 - Poetry
 - Docker (opcional)
 
+## Variables de entorno (opcional)
+
+- `JWT_ADMIN_USERNAME` (default: `admin`)
+- `JWT_ADMIN_PASSWORD` (default: `admin123`)
+- `JWT_SECRET_KEY` (default: `change-this-secret-key`)  
+  > Recomendado cambiarlo en despliegues reales.
+
 ## Instalación local con Poetry
 
 ```bash
@@ -49,6 +56,8 @@ La API quedará disponible en: `http://localhost:8000`
 }
 ```
 
+El `access_token` expira en **300 segundos**.
+
 ### 2) Refrescar token
 
 - **URL:** `POST /refresh`
@@ -59,6 +68,8 @@ La API quedará disponible en: `http://localhost:8000`
   "refresh_token": "<jwt>"
 }
 ```
+
+El `refresh_token` emitido por `/token` expira en **1800 segundos**.
 
 - **Respuesta (ejemplo):**
 
