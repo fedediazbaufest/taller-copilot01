@@ -5,15 +5,14 @@ Aplicación Web API en Python + FastAPI que implementa autenticación JWT.
 ## Requisitos
 
 - Python 3.11+
-- Poetry
+- Poetry 1.8.3+
 - Docker (opcional)
 
 ## Variables de entorno (opcional)
 
 - `JWT_ADMIN_USERNAME` (default: `admin`)
 - `JWT_ADMIN_PASSWORD` (default: `admin123`)
-- `JWT_SECRET_KEY` (default: `change-this-secret-key`)  
-  > Recomendado cambiarlo en despliegues reales.
+- `JWT_SECRET_KEY` (**requerido**)
 
 ## Instalación local con Poetry
 
@@ -26,6 +25,7 @@ poetry install
 
 ```bash
 cd backend
+export JWT_SECRET_KEY="tu-clave-secreta"
 poetry run uvicorn app.main:app --reload
 ```
 

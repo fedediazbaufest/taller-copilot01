@@ -13,7 +13,10 @@ ACCESS_TOKEN_EXPIRE_SECONDS = 300
 REFRESH_TOKEN_EXPIRE_SECONDS = 1800
 ADMIN_USERNAME = os.getenv("JWT_ADMIN_USERNAME", "admin")
 ADMIN_PASSWORD = os.getenv("JWT_ADMIN_PASSWORD", "admin123")
-SECRET_KEY = os.getenv("JWT_SECRET_KEY", "change-this-secret-key")
+SECRET_KEY = os.getenv("JWT_SECRET_KEY")
+
+if not SECRET_KEY:
+    raise RuntimeError("JWT_SECRET_KEY debe estar definido")
 
 
 class AuthRequest(BaseModel):
@@ -68,7 +71,7 @@ def refresh_token(request: RefreshRequest) -> dict[str, Any]:
             raise HTTPException(status_code=401, detail="Refresh token inválido")
 
         username = payload.get("sub")
-        if username != ADMIN_USERNAME:
+        if not username:
             raise HTTPException(status_code=401, detail="Usuario no autorizado")
 
     except JWTError as exc:
